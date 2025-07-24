@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooted Communities</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f4f1ec;
+      color: #2e2e2e;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #5a7c5d;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    header img.logo {
+      max-width: 150px;
+      display: block;
+      margin: 0 auto 0.5rem;
+    }
+    header p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    nav {
+      background-color: #3d5a40;
+      text-align: center;
+      padding: 1rem;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+    h2 {
+      color: #3d5a40;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .donation-meter {
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .donation-fill {
+      height: 30px;
+      background-color: #5a7c5d;
+      color: white;
+      line-height: 30px;
+      text-align: center;
+      transition: width 0.5s ease-in-out;
+    }
+    .donation-form {
+      margin-top: 1rem;
+    }
+    .donation-form input[type="number"] {
+      padding: 0.5rem;
+      width: 100px;
+    }
+    .donation-form button {
+      padding: 0.5rem 1rem;
+      background-color: #3d5a40;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+    .stripe-button {
+      background-color: #635bff;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #3d5a40;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+    .social-links {
+      margin-top: 1rem;
+    }
+    .social-links a {
+      color: white;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+    iframe {
+      width: 100%;
+      border: none;
+      margin-top: 1rem;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="6f823ce7-1b13-4a08-b9d1-4edda0a2b3dc.png" alt="Rooted Communities Logo" class="logo">
+    <p>Food sovereignty for people, pollinators, and the planet.</p>
+  </header>
+
+  <nav>
+    <a href="#mission">Mission</a>
+    <a href="#vision">Vision</a>
+    <a href="#pillars">8 Pillars</a>
+    <a href="#donate">Donate</a>
+    <a href="#store">Store</a>
+    <a href="#events">Events</a>
+  </nav>
+
+  <section id="mission">
+    <h2>Mission</h2>
+    <p>Empowering communities to reclaim food sovereignty through sustainable practices, environmental education, and the protection of pollinators and ecosystems.</p>
+  </section>
+
+  <section id="vision">
+    <h2>Vision</h2>
+    <p>A future where food is a right, not a privilege—where communities reclaim land, restore ecosystems, and resist systems that keep them hungry and powerless.</p>
+  </section>
+
+  <section id="pillars">
+    <h2>The 8 Pillars of Rooted Communities</h2>
+    <ul>
+      <li><strong>Food Justice:</strong> We believe access to healthy, free, and culturally appropriate food is a human right—not a privilege.</li>
+      <li><strong>Community Empowerment:</strong> We center the voices, leadership, and strength of communities to reclaim their power over food and land.</li>
+      <li><strong>Sustainability:</strong> We promote regenerative practices that protect soil, water, pollinators, and ecosystems for future generations.</li>
+      <li><strong>Environmental Protection:</strong> We protect and restore the natural world as an act of resistance and respect—recognizing healthy ecosystems as essential to food sovereignty and community survival.</li>
+      <li><strong>Education and Accessibility:</strong> We provide inclusive, hands-on education that equips all people with the skills and knowledge to grow and sustain their own food.</li>
+      <li><strong>Equity and Inclusion:</strong> We work to dismantle systemic barriers and ensure everyone—regardless of background—can participate fully in our mission.</li>
+      <li><strong>Collaboration and Solidarity:</strong> We build strong alliances with community members, local organizations, and movements to create lasting impact.</li>
+      <li><strong>Transparency and Accountability:</strong> We operate openly and honestly, honoring the trust communities place in us and measuring our impact with integrity.</li>
+    </ul>
+  </section>
+
+  <section id="donate">
+    <h2>Support Our Work</h2>
+    <p>Your donation helps sustain and grow our grassroots food sovereignty programs.</p>
+
+    <div class="donation-meter">
+      <div id="donationFill" class="donation-fill" style="width: 100%">$0 Raised</div>
+    </div>
+
+    <div class="donation-form">
+      <input type="number" id="donationAmount" placeholder="$" min="1" />
+      <button onclick="addDonation()">Donate</button>
+    </div>
+
+    <form action="https://buy.stripe.com/test_a1b2c3d4e5f6g7h8ij" method="GET">
+      <button type="submit" class="stripe-button">Donate with Stripe</button>
+    </form>
+  </section>
+
+  <section id="store">
+    <h2>Visit Our Store</h2>
+    <p>Support our mission with Rooted Communities merchandise and eco-conscious gear. <a href="#">Click here to browse the store.</a></p>
+  </section>
+
+  <section id="events">
+    <h2>Community Events</h2>
+    <p>Join us at upcoming workshops, volunteer days, and seasonal gatherings.</p>
+    <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id_here&ctz=America%2FNew_York"></iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rooted Communities | All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/yourpage" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/yourhandle" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    let totalDonations = 0;
+    function addDonation() {
+      const input = document.getElementById('donationAmount');
+      const donation = parseFloat(input.value);
+      if (!isNaN(donation) && donation > 0) {
+        totalDonations += donation;
+        const fill = document.getElementById('donationFill');
+        fill.textContent = `$${Math.round(totalDonations)} Raised`;
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
